@@ -6,8 +6,18 @@
     text-decoration: none !important;
 }
 
+td{vertical-align: middle !important;}
+
 .py-10{padding:100px 0px;}
 .bg-mavi{background-color: #4255a4;}
 
 #footer{color:#fff;}
 #footer .bi{color:#fff;}
+
+#panel li{
+    background-color: transparent !important;
+    border:0px;
+    padding:6px;
+}
+
+#panel li a{color: #fff;}

@@ -1,0 +1,1 @@
+<?php $db = new PDO('mysql:host=localhost;dbname=turkuaze_main;charset=UTF8','turkuaze_main','fO0.QC^~P9ko'); ?>
