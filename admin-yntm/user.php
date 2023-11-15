@@ -1,4 +1,21 @@
-<?php require_once('header.php'); ?>
+<?php
+require_once('header.php');
+
+if(isset($_GET['deleteId'])){
+    $id = $_GET['deleteId'];
+    $userSil = $db -> prepare('delete from user where id=?');
+    $userSil -> execute(array($id));
+
+    if($userSil -> rowCount()){
+        echo '<script>alert("Kullanıcı Kaydı Silinmiştir")</script><meta http-equiv="refresh" content="0; url=user.php">';
+    } else {
+        echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=user.php">';
+    }
+}
+
+?>
+
+
 
 <!-- User Section Start -->
 <div class="row">
