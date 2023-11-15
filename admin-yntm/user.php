@@ -1,21 +1,31 @@
 <?php
 require_once('header.php');
 
-if(isset($_GET['deleteId'])){
+if (isset($_GET['deleteId'])) {
     $id = $_GET['deleteId'];
-    $userSil = $db -> prepare('delete from user where id=?');
-    $userSil -> execute(array($id));
+    $userSil = $db->prepare('delete from user where id=?');
+    $userSil->execute(array($id));
 
-    if($userSil -> rowCount()){
+    if ($userSil->rowCount()) {
         echo '<script>alert("Kullanıcı Kaydı Silinmiştir")</script><meta http-equiv="refresh" content="0; url=user.php">';
     } else {
         echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=user.php">';
     }
+} else if (isset($_GET['updateId'])) {
+    $id = $_GET['updateId'];
+    $userInfo = $db->prepare('select * from user where id=?');
+    $userInfo->execute(array($id));
+    $userInfoSatir = $userInfo->fetch();
+
+    echo '    
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      $("#myModal").modal("show");
+    });
+    </script>    
+    ';
 }
-
 ?>
-
-
 
 <!-- User Section Start -->
 <div class="row">
@@ -49,9 +59,9 @@ if(isset($_GET['deleteId'])){
         <?php
         if (isset($_POST['userAdd'])) {
             $userEkle = $db->prepare('insert into user(adi,kadi,sifre) values(?,?,?)');
-            $userEkle -> execute(array($_POST['adi'],$_POST['kadi'],$_POST['sifre']));
+            $userEkle->execute(array($_POST['adi'], $_POST['kadi'], $_POST['sifre']));
 
-            if($userEkle -> rowCount()){
+            if ($userEkle->rowCount()) {
                 echo '<script>alert("Kullanıcı Eklendi")</script><meta http-equiv="refresh" content="0; url=user.php">';
             } else {
                 echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=user.php">';
@@ -97,5 +107,49 @@ if(isset($_GET['deleteId'])){
         </table>
     </div>
 </div>
+
+<!-- User Update Model Start -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModal">Kullanıcı Bilgi Güncelleme</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="">Adı Soyadı</label>
+                        <input type="text" name="adi" value="<?php echo $userInfoSatir['adi']; ?>" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Kullanıcı Adı</label>
+                        <input type="text" name="kadi" value="<?php echo $userInfoSatir['kadi']; ?>" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Şifre</label>
+                        <input type="password" name="sifre" value="<?php echo $userInfoSatir['sifre']; ?>" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="<?php echo $userInfoSatir['id']; ?>">
+                        <input type="submit" value="Güncelle" class="btn btn-success w-100" name="userUpdate">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- User Update Model End -->
+
+<!-- User Upadate Module Start -->
+<?php
+if($_POST['userUpdate']){
+    $userUpdate = $db -> prepare('update user set adi=?, kadi=?, sifre=? where id=?');
+    $userUpdate -> execute(array($_POST['adi']),$_POST['kadi'],$_POST['sifre']);
+}
+?>
+<!-- User Upadate Module End -->
 
 <?php require_once('footer.php'); ?>
