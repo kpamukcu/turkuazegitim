@@ -56,4 +56,4 @@ session_start();
                         <li class="list-group-item"><a href="kategori.php">Kategoriler</a></li>
                     </ul>
                 </div>
-                <div class="col-md-10 py-3">
+                <div class="col-md-10 py-4">
