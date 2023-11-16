@@ -145,9 +145,15 @@ if (isset($_GET['deleteId'])) {
 
 <!-- User Upadate Module Start -->
 <?php
-if($_POST['userUpdate']){
+if(isset($_POST['userUpdate'])){
     $userUpdate = $db -> prepare('update user set adi=?, kadi=?, sifre=? where id=?');
-    $userUpdate -> execute(array($_POST['adi']),$_POST['kadi'],$_POST['sifre']);
+    $userUpdate -> execute(array($_POST['adi'],$_POST['kadi'],$_POST['sifre'],$_POST['id']));
+
+    if($userUpdate -> rowCount()){
+        echo '<script>alert("Kullanıcı Kaydı Güncellendi")</script><meta http-equiv="refresh" content="0; url=user.php">';
+    } else {
+        echo '<script>alert("Hata Oluştu. Tekrar Deneyin")</script><meta http-equiv="refresh" content="0; url=user.php">';
+    }
 }
 ?>
 <!-- User Upadate Module End -->
