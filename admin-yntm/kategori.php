@@ -2,7 +2,6 @@
 
 require_once('header.php');
 
-
 if (isset($_GET['deleteId'])) {
     $id = $_GET['deleteId'];
     $katSil = $db->prepare('delete from kategoriler where id=?');
@@ -13,8 +12,21 @@ if (isset($_GET['deleteId'])) {
     } else {
         echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
     }
-}
+} elseif (isset($_GET['updateId'])) {
+    $id = $_GET['updateId'];
+    $katSec = $db->prepare('select * from kategoriler where id=?');
+    $katSec->execute(array($id));
+    $katSecList = $katSec->fetch();
 
+    if ($katSec->rowCount()) {
+        echo '
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          $("#katUpdate").modal("show");
+        });
+        </script>';
+    }
+}
 
 ?>
 
@@ -151,5 +163,41 @@ if (isset($_POST['katekle'])) {
     </div>
 </div>
 <!-- Category List Section End -->
+
+<!-- Category Update Modal Start -->
+<div class="modal fade" id="katUpdate" tabindex="-1" aria-labelledby="katUpdate" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="katUpdate"><?php echo $katSecList['katadi']; ?> Kategorisini Güncelle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="<?php echo $katSecList['gorsel']; ?>"><br><br>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Kategori Adı</label>
+                        <input type="text" name="katadi" value="<?php echo $katSecList['katadi']; ?>" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori Türü</label>
+                        <select name="katturu" class="form-control">
+                            <option value="<?php echo $katSecList['katturu']; ?>"><?php echo $katSecList['katturu']; ?></option>
+                            <option value="Alt Kategori">Alt Kategori</option>
+                            <option value="Üst Kategori">Üst Kategori</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori Görseli Seçiniz</label>
+                        <input type="file" name="gorsel">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Category Update Modal End -->
 
 <?php require_once('footer.php'); ?>
