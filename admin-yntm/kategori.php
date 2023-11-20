@@ -1,4 +1,22 @@
-<?php require_once('header.php'); ?>
+<?php
+
+require_once('header.php');
+
+
+if (isset($_GET['deleteId'])) {
+    $id = $_GET['deleteId'];
+    $katSil = $db->prepare('delete from kategoriler where id=?');
+    $katSil->execute(array($id));
+
+    if ($katSil->rowCount()) {
+        echo '<script>alert("Kategori Silindi")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
+    } else {
+        echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
+    }
+}
+
+
+?>
 
 <!-- Category Add Section Start -->
 <div class="row">
@@ -37,6 +55,18 @@
                                 <select name="ustkategori" class="form-control">
                                     <option value="">Üst Kategori Seçiniz</option>
                                     <option value="-">Yok</option>
+                                    <?php
+                                    $katTuruSec = $db->prepare('select * from kategoriler');
+                                    $katTuruSec->execute();
+
+                                    if ($katTuruSec->rowCount()) {
+                                        foreach ($katTuruSec as $katTuruSecSatir) {
+                                    ?>
+                                            <option value="<?php echo $katTuruSecSatir['katadi']; ?>"><?php echo $katTuruSecSatir['katadi']; ?></option>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -60,16 +90,16 @@
 
 <!-- Category Add Module Start -->
 <?php
-if(isset($_POST['katekle'])){
-    $gorsel = '../img/'.$_FILES['gorsel']['name'];
+if (isset($_POST['katekle'])) {
+    $gorsel = '../img/' . $_FILES['gorsel']['name'];
 
-    if(move_uploaded_file($_FILES['gorsel']['tmp_name'],$gorsel)){
-        $katekle = $db-> prepare('insert into kategoriler(katadi,katturu,ustkategori,aciklama,gorsel) values(?,?,?,?,?)');
-        $katekle -> execute(array($_POST['katadi'],$_POST['katturu'],$_POST['ustkategori'],$_POST['aciklama'],$_POST['gorsel']));
+    if (move_uploaded_file($_FILES['gorsel']['tmp_name'], $gorsel)) {
+        $katekle = $db->prepare('insert into kategoriler(katadi,katturu,ustkategori,aciklama,gorsel) values(?,?,?,?,?)');
+        $katekle->execute(array($_POST['katadi'], $_POST['katturu'], $_POST['ustkategori'], $_POST['aciklama'], $gorsel));
 
-        if($katekle -> rowCount()){
+        if ($katekle->rowCount()) {
             echo '<script>alert("Yeni Kategori Eklendi")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
-        } else{
+        } else {
             echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
         }
     } else {
@@ -85,12 +115,38 @@ if(isset($_POST['katekle'])){
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Görsel</th>
                     <th>Kategori Adı</th>
                     <th>Kategori Türü</th>
                     <th>Üst Kategorisi</th>
-                    <th>Ayrıntılar</th>
+                    <th class="text-center">Düzenle</th>
+                    <th class="text-center">Sil</th>
                 </tr>
             </thead>
+            <tbody>
+
+                <?php
+
+                $katList = $db->prepare('select * from kategoriler order by id desc');
+                $katList->execute();
+
+                if ($katList->rowCount()) {
+                    foreach ($katList as $katListSatir) {
+                ?>
+                        <tr>
+                            <td><img src="<?php echo $katListSatir['gorsel']; ?>" class="w-25"></td>
+                            <td><?php echo $katListSatir['katadi']; ?></td>
+                            <td><?php echo $katListSatir['katturu']; ?></td>
+                            <td><?php echo $katListSatir['ustkategori']; ?></td>
+                            <td class="text-center"><a href="kategori.php?updateId=<?php echo $katListSatir['id']; ?>" class="btn btn-warning">Güncelle</a></td>
+                            <td class="text-center"><a href="kategori.php?deleteId=<?php echo $katListSatir['id']; ?>" class="btn btn-danger">Sİl</a></td>
+                        </tr>
+                <?php
+                    }
+                }
+
+                ?>
+            </tbody>
         </table>
     </div>
 </div>
