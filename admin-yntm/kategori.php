@@ -190,8 +190,34 @@ if (isset($_POST['katekle'])) {
                         </select>
                     </div>
                     <div class="form-group">
+                        <label>Üst Kategori Seçiniz</label>
+                        <select name="ustkategori" class="form-control">
+                            <option value="<?php echo $katSecList['katadi']; ?>"><?php echo $katSecList['katadi']; ?></option>
+                            <?php
+                            $ustKatSec = $db->prepare('select * from kategoriler');
+                            $ustKatSec->execute();
+
+                            if ($ustKatSec->rowCount()) {
+                                foreach ($ustKatSec as $ustKatSecSatir) {
+                            ?>
+                                    <option value="<?php echo $ustKatSecSatir['ustkategori']; ?>"><?php echo $ustKatSecSatir['ustkategori']; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <textarea name="aciklama" rows="4" class="form-control"><?php echo $katSecList['aciklama']; ?></textarea>
+                    </div>
+                    <div class="form-group">
                         <label>Kategori Görseli Seçiniz</label>
                         <input type="file" name="gorsel">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="<?php echo $katSecList['id']; ?>">
+                        <input type="submit" value="Güncelle" class="btn btn-success w-100" name="katGuncelle">
                     </div>
                 </form>
             </div>
@@ -199,5 +225,24 @@ if (isset($_POST['katekle'])) {
     </div>
 </div>
 <!-- Category Update Modal End -->
+
+<!-- Category Update Modul Start -->
+<?php
+if (isset($_POST['katGuncelle'])) {
+    $gorsel = '../img/' . $_FILES['gorsel']['name'];
+
+    if (move_uploaded_file($_FILES['gorsel']['tmp_name'], $gorsel)) {
+        $katGuncelle = $db->prepare('update kategoriler set katadi=?, katturu=?, ustkategori=?, aciklama=?, gorsel=? where id=?');
+        $katGuncelle->execute(array($_POST['katadi'], $_POST['katturu'], $_POST['ustkategori'], $_POST['aciklama'], $gorsel, $_POST['id']));
+        if ($katGuncelle->rowCount()) {
+            echo '<script>alert("Kategori Güncellendi")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
+        } else {
+            echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
+        }
+    }
+}
+?>
+<!-- Category Update Modul End -->
+
 
 <?php require_once('footer.php'); ?>
