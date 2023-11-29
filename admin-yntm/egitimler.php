@@ -13,7 +13,7 @@
 
         <!-- Modal -->
         <div class="modal fade" id="egitimekle" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="egitimekle" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="egitimekle">Yeni Eğitim Ekle</h5>
@@ -36,8 +36,31 @@
                                     });
                                 </script>
                             </div>
-                            <div class="form-group">
-                                <input type="text" name="" id="" class="form-control">
+                            <div class="form-group text-left">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Eğitim Süresi (Saat)</label>
+                                        <input type="number" name="sure" placeholder="Ör: 35" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Kimler Katılabilir</label>
+                                        <select name="katilimci" class="form-control">
+                                            <option value="">Seçiniz</option>
+                                            <option value="Herkes">Herkes</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Kontenjan</label>
+                                        <input type="number" name="kontenjan" placeholder="Ör: 20" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Görsel (1920x540px)</label>
+                                        <input type="file" name="gorsel">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-left">
+                                <input type="submit" value="Kaydet" class="btn btn-success">
                             </div>
                         </form>
                     </div>
