@@ -151,7 +151,7 @@ if (isset($_POST['katekle'])) {
                             <td><?php echo $katListSatir['katturu']; ?></td>
                             <td><?php echo $katListSatir['ustkategori']; ?></td>
                             <td class="text-center"><a href="kategori.php?updateId=<?php echo $katListSatir['id']; ?>" class="btn btn-warning">Güncelle</a></td>
-                            <td class="text-center"><a href="kategori.php?deleteId=<?php echo $katListSatir['id']; ?>" class="btn btn-danger">Sİl</a></td>
+                            <td class="text-center"><a href="kategori.php?deleteId=<?php echo $katListSatir['id']; ?>" class="btn btn-danger">Sil</a></td>
                         </tr>
                 <?php
                     }

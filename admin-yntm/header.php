@@ -14,6 +14,10 @@ session_start();
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
 
+    <!-- Ck Editör Cdn-->
+    <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+
+
     <title>Document</title>
 </head>
 
@@ -54,6 +58,7 @@ session_start();
                         <li class="list-group-item"><a href="dashboard.php">Dashboard</a></li>
                         <li class="list-group-item"><a href="user.php">Kullanıcılar</a></li>
                         <li class="list-group-item"><a href="kategori.php">Kategoriler</a></li>
+                        <li class="list-group-item"><a href="egitimler.php">Eğitimler</a></li>
                     </ul>
                 </div>
                 <div class="col-md-10 py-4">
