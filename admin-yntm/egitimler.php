@@ -73,23 +73,72 @@
 
 <!-- Eğitim Add Module Start -->
 <?php
-if(isset($_POST['egitimEkle'])){
-    $gorsel = '../img/'.$_FILES['gorsel']['name'];
+if (isset($_POST['egitimEkle'])) {
+    $gorsel = '../img/' . $_FILES['gorsel']['name'];
 
-    if(move_uploaded_file($_FILES['gorsel']['tmp_name'],$gorsel)){
-        $egitimEkle = $db -> prepare('insert into egitimler(egitimAdi,aciklama,sure,katilimci,kontenjan,gorsel) values(?,?,?,?,?,?)');
-        $egitimEkle -> execute(array($_POST['egitimAdi'],$_POST['aciklama'],$_POST['sure'],$_POST['katilimci'],$_POST['kontenjan'],$gorsel));
+    if (move_uploaded_file($_FILES['gorsel']['tmp_name'], $gorsel)) {
+        $egitimEkle = $db->prepare('insert into egitimler(egitimAdi,aciklama,sure,katilimci,kontenjan,gorsel) values(?,?,?,?,?,?)');
+        $egitimEkle->execute(array($_POST['egitimAdi'], $_POST['aciklama'], $_POST['sure'], $_POST['katilimci'], $_POST['kontenjan'], $gorsel));
 
-        if($egitimEkle -> rowCount()){
+        if ($egitimEkle->rowCount()) {
             echo '<script>alert("Eğitim Kayıt Edildi")</script><meta http-equiv="refresh" content="0; url=egitimler.php">';
         } else {
             echo '<script>alert("Hata Oluştu")</script>';
         }
     } else {
         echo '<script>alert("Görsel Yüklenemedi. Tekrar Deneyin")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
-    }  
+    }
 }
 ?>
 <!-- Eğitim Add Module End -->
+
+<!-- Eğitim List Section Start -->
+<section id="egitimList">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Görsel</th>
+                            <th>Eğitim</th>
+                            <th>Açıklama</th>
+                            <th class="text-center">Süre</th>
+                            <th class="text-center">Katılımcı</th>
+                            <th class="text-center">Kontenjan</th>
+                            <th class="text-center">Düzenle</th>
+                            <th class="text-center">Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        $egitimList = $db->prepare('select * from egitimler order by egitimAdi asc');
+                        $egitimList->execute();
+
+                        if ($egitimList->rowCount()) {
+                            foreach ($egitimList as $egitimListSatir) {
+                        ?>
+                                <tr>
+                                    <td class="w-25"><img src="<?php echo $egitimListSatir['gorsel']; ?>" class="w-100"></td>
+                                    <td><?php echo $egitimListSatir['egitimAdi']; ?></td>
+                                    <td class="w-25"><?php echo substr($egitimListSatir['aciklama'],0,101); ?>...</td>
+                                    <td class="text-center"><?php echo $egitimListSatir['sure']; ?></td>
+                                    <td class="text-center"><?php echo $egitimListSatir['katilimci']; ?></td>
+                                    <td class="text-center"><?php echo $egitimListSatir['kontenjan']; ?></td>
+                                    <td class="text-center"><a href="" class="btn btn-warning">Düzenle</a></td>
+                                    <td class="text-center"><a href="" class="btn btn-danger">Sil</a></td>
+                                </tr>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Eğitim List Section End -->
 
 <?php require_once('footer.php'); ?>
