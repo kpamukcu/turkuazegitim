@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="form-group text-left">
-                                <input type="submit" value="Kaydet" class="btn btn-success">
+                                <input type="submit" value="Kaydet" class="btn btn-success" name="egitimEkle">
                             </div>
                         </form>
                     </div>
@@ -70,5 +70,26 @@
     </div>
 </div>
 <!-- Eğitimler Section End -->
+
+<!-- Eğitim Add Module Start -->
+<?php
+if(isset($_POST['egitimEkle'])){
+    $gorsel = '../img/'.$_FILES['gorsel']['name'];
+
+    if(move_uploaded_file($_FILES['gorsel']['tmp_name'],$gorsel)){
+        $egitimEkle = $db -> prepare('insert into egitimler(egitimAdi,aciklama,sure,katilimci,kontenjan,gorsel) values(?,?,?,?,?,?)');
+        $egitimEkle -> execute(array($_POST['egitimAdi'],$_POST['aciklama'],$_POST['sure'],$_POST['katilimci'],$_POST['kontenjan'],$gorsel));
+
+        if($egitimEkle -> rowCount()){
+            echo '<script>alert("Eğitim Kayıt Edildi")</script><meta http-equiv="refresh" content="0; url=egitimler.php">';
+        } else {
+            echo '<script>alert("Hata Oluştu")</script>';
+        }
+    } else {
+        echo '<script>alert("Görsel Yüklenemedi. Tekrar Deneyin")</script><meta http-equiv="refresh" content="0; url=kategori.php">';
+    }  
+}
+?>
+<!-- Eğitim Add Module End -->
 
 <?php require_once('footer.php'); ?>
