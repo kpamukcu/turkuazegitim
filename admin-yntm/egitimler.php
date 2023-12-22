@@ -1,4 +1,23 @@
-<?php require_once('header.php'); ?>
+<?php
+
+require_once('header.php');
+
+
+if (isset($_GET['updateID'])) {
+    $id = $_GET['updateID'];
+    $egitimSec = $db->prepare('select * from egitimler where id=?');
+    $egitimSec->execute(array($id));
+    $egitimSecRow = $egitimSec->fetch();
+
+    echo '
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      $("#myModal").modal("show");
+    });
+    </script>
+    ';
+}
+?>
 
 <!-- Eğitimler Section Start -->
 <div class="row">
@@ -38,20 +57,30 @@
                             </div>
                             <div class="form-group text-left">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label>Eğitim Süresi (Saat)</label>
                                         <input type="number" name="sure" placeholder="Ör: 35" class="form-control">
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label>Kimler Katılabilir</label>
                                         <select name="katilimci" class="form-control">
                                             <option value="">Seçiniz</option>
                                             <option value="Herkes">Herkes</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label>Kontenjan</label>
                                         <input type="number" name="kontenjan" placeholder="Ör: 20" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Kategori</label>
+                                        <select name="kategori" class="form-control">
+                                            <option value="">Seçiniz</option>
+                                            <option value="Dil Eğitimi">Dil Eğitimi</option>
+                                            <option value="Sınavlara Hazırlık Kursları">Sınavlara Hazırlık Kursları</option>
+                                            <option value="Turkuaz Akademi">Turkuaz Akademi</option>
+                                            <option value="Yurt Dışı Eğitim">Yurt Dışı Eğitim</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
                                         <label>Görsel (1920x540px)</label>
@@ -93,7 +122,7 @@ if (isset($_POST['egitimEkle'])) {
 <!-- Eğitim Add Module End -->
 
 <!-- Eğitim List Section Start -->
-<section id="egitimList">
+<section id="egitimList" class="mt-4">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 p-0">
@@ -111,7 +140,7 @@ if (isset($_POST['egitimEkle'])) {
                         </tr>
                     </thead>
                     <tbody>
-
+                        <!-- Eğitim List Modüle Start -->
                         <?php
                         $egitimList = $db->prepare('select * from egitimler order by egitimAdi asc');
                         $egitimList->execute();
@@ -122,17 +151,18 @@ if (isset($_POST['egitimEkle'])) {
                                 <tr>
                                     <td class="w-25"><img src="<?php echo $egitimListSatir['gorsel']; ?>" class="w-100"></td>
                                     <td><?php echo $egitimListSatir['egitimAdi']; ?></td>
-                                    <td class="w-25"><?php echo substr($egitimListSatir['aciklama'],0,101); ?>...</td>
+                                    <td class="w-25"><?php echo substr($egitimListSatir['aciklama'], 0, 101); ?>...</td>
                                     <td class="text-center"><?php echo $egitimListSatir['sure']; ?></td>
                                     <td class="text-center"><?php echo $egitimListSatir['katilimci']; ?></td>
                                     <td class="text-center"><?php echo $egitimListSatir['kontenjan']; ?></td>
-                                    <td class="text-center"><a href="" class="btn btn-warning">Düzenle</a></td>
-                                    <td class="text-center"><a href="" class="btn btn-danger">Sil</a></td>
+                                    <td class="text-center"><a href="egitimler.php?updateID=<?php echo $egitimListSatir['id']; ?>" class="btn btn-warning">Düzenle</a></td>
+                                    <td class="text-center"><a href="egitimler.php?deleteID=<?php echo $egitimListSatir['id']; ?>" class="btn btn-danger">Sil</a></td>
                                 </tr>
                         <?php
                             }
                         }
                         ?>
+                        <!-- Eğitim List Modüle End -->
                     </tbody>
                 </table>
             </div>
@@ -140,5 +170,73 @@ if (isset($_POST['egitimEkle'])) {
     </div>
 </section>
 <!-- Eğitim List Section End -->
+
+<!-- Eğitim Update Modal Start -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModal">Güncelle - <?php echo $egitimSecRow['egitimAdi']; ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" name="egitimAdiUP" value="<?php echo $egitimSecRow['egitimAdi']; ?>" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="aciklamaUP">
+                        <?php echo $egitimSecRow['aciklama']; ?>
+                        </textarea>
+                        <script>
+                            CKEDITOR.replace('aciklamaUP', {
+                                height: "300px"
+                            });
+                        </script>
+                    </div>
+                    <div class="form-group text-left">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Eğitim Süresi (Saat)</label>
+                                <input type="number" name="sureUP" value="<?php echo $egitimSecRow['sure']; ?>" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <label>Kimler Katılabilir</label>
+                                <select name="katilimciUP" class="form-control">
+                                    <option value="<?php echo $egitimSecRow['katilimci']; ?>"><?php echo $egitimSecRow['katilimci']; ?></option>
+                                    <option value="Herkes">Herkes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label>Kontenjan</label>
+                                <input type="number" name="kontenjanUP" value="<?php echo $egitimSecRow['kontenjan']; ?>" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label>Kategori</label>
+                                <select name="kategoriUP" class="form-control">
+                                    <option value="<?php echo $egitimSecRow['kategori']; ?>"><?php echo $egitimSecRow['kategori']; ?></option>
+                                    <option value="Dil Eğitimi">Dil Eğitimi</option>
+                                    <option value="Sınavlara Hazırlık Kursları">Sınavlara Hazırlık Kursları</option>
+                                    <option value="Turkuaz Akademi">Turkuaz Akademi</option>
+                                    <option value="Yurt Dışı Eğitim">Yurt Dışı Eğitim</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Görsel (1920x540px)</label>
+                                <input type="file" name="gorselUP">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-left">
+                        <input type="submit" value="Kaydet" class="btn btn-success" name="egitimUpdate">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Eğitim Update Modal End -->
 
 <?php require_once('footer.php'); ?>
