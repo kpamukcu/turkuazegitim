@@ -58,6 +58,7 @@ session_start();
                         <li class="list-group-item"><a href="dashboard.php">Dashboard</a></li>
                         <li class="list-group-item"><a href="user.php">Kullanıcılar</a></li>
                         <li class="list-group-item"><a href="kategori.php">Kategoriler</a></li>
+                        <li class="list-group-item"><a href="yazilar.php">Yazılar</a></li>
                         <li class="list-group-item"><a href="egitimler.php">Eğitimler</a></li>
                     </ul>
                 </div>
