@@ -159,7 +159,7 @@ if (isset($_POST['egitimEkle'])) {
                             foreach ($egitimList as $egitimListSatir) {
                         ?>
                                 <tr>
-                                    <td class="w-25"><img src="<?php echo $egitimListSatir['gorsel']; ?>" class="w-100"></td>
+                                    <td class="w-25"><img src="<?php echo $egitimListSatir['gorsel']; ?>" class="w-75"></td>
                                     <td><?php echo $egitimListSatir['egitimAdi']; ?></td>
                                     <td class="w-25"><?php echo substr($egitimListSatir['aciklama'], 0, 101); ?>...</td>
                                     <td class="text-center"><?php echo $egitimListSatir['sure']; ?></td>
