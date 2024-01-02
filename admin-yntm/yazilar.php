@@ -1,13 +1,31 @@
-<?php 
+<?php
 
-require_once('header.php'); 
+require_once('header.php');
 
-if(isset($_GET['updateID'])){
+if (isset($_GET['updateID'])) {
     $id = $_GET['updateID'];
+    $yaziCek = $db->prepare('select * from yazilar where id=?');
+    $yaziCek->execute(array($id));
+    $yaziCekSatir = $yaziCek->fetch();
+
+    echo '
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      $("#guncelle").modal("show");
+    });
+    </script>
+    ';
+} elseif(isset($_GET['deleteID'])){
+    $id = $_GET['deleteID'];
+    $yaziSil = $db -> prepare('delete from yazilar where id=?');
+    $yaziSil -> execute(array($id));
     
+    if($yaziSil -> rowCount()){
+        echo '<script>alert("Yazı Silindi")</script><meta http-equiv="refresh" content="0; url=yazilar.php">';
+    } else {
+        echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=yazilar.php">';
+    }
 }
-
-
 ?>
 
 <!-- Blog Add Section Start -->
@@ -167,5 +185,106 @@ if (isset($_POST['blogKaydet'])) {
     </div>
 </div>
 <!-- Yazılar List Section End -->
+
+<!-- Post Update Modal Start -->
+<div class="modal fade" id="guncelle" tabindex="-1" aria-labelledby="guncelle" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guncelle"><?php echo $yaziCekSatir['baslik']; ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" class="form-row" enctype="multipart/form-data">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="text" name="baslik" value="<?php echo $yaziCekSatir['baslik']; ?>" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="blogMetni"><?php echo $yaziCekSatir['blogYazisi']; ?></textarea>
+                            <script>
+                                CKEDITOR.replace('blogMetni', {
+                                    height: "350px"
+                                });
+                            </script>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="meta" rows="3" class="form-control"><?php echo $yaziCekSatir['meta']; ?></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><?php echo substr($yaziCekSatir['gorsel'], 7); ?></label>
+                            <input type="file" name="gorsel">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Görsel Açıklaması Girin</label>
+                            <input type="text" name="alt" value="<?php echo $yaziCekSatir['alt']; ?>" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label>Tarih</label>
+                            <input type="date" name="tarih" class="form-control" value="<?php echo $yaziCekSatir['tarih']; ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Yayın Dili</label>
+                            <select name="lang" class="form-control">
+                                <option value="<?php echo $yaziCekSatir['lang']; ?>"><?php echo $yaziCekSatir['lang']; ?></option>
+                                <option value="Türkçe">Türkçe</option>
+                                <option value="İngilizce">İngilizce</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Yayın Durumu</label>
+                            <select name="durum" id="" class="form-control">
+                                <option value="<?php echo $yaziCekSatir['durum']; ?>"><?php echo $yaziCekSatir['durum']; ?></option>
+                                <option value="Yayınlandı">Yayınlandı</option>
+                                <option value="Taslak">Taslak</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-1 align-self-end">
+                        <div class="form-group">
+                            <input type="hidden" name="blogID" value="<?php echo $yaziCekSatir['id']; ?>">
+                            <input type="submit" value="Kaydet" class="btn btn-success" name="blogGuncelle">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Post Update Modal End -->
+
+<!-- Post Update Module Start -->
+<?php
+
+if (isset($_POST['blogGuncelle'])) {
+
+    $gorsel = '../img/' . $_FILES['gorsel']['name'];
+
+    if (move_uploaded_file($_FILES['gorsel']['tmp_name'],$gorsel)) {
+        $gorselUpdate = $db->prepare('update yazilar set baslik=?,blogYazisi=?,meta=?,gorsel=?,alt=?,tarih=?,lang=?,durum=? where id=?');
+        $gorselUpdate->execute(array($_POST['baslik'], $_POST['blogMetni'], $_POST['meta'], $gorsel, $_POST['alt'], $_POST['tarih'], $_POST['lang'], $_POST['durum'], $_POST['blogID']));
+
+        if($gorselUpdate -> rowCount()){
+            echo '<script>alert("Makale Güncellendi")</script><meta http-equiv="refresh" content="0; url=yazilar.php">';
+        } else {
+            echo '<script>alert("Hata Oluştu")</script><meta http-equiv="refresh" content="0; url=yazilar.php">';
+        }
+    }
+}
+
+?>
+<!-- Post Update Module End -->
 
 <?php require_once('footer.php'); ?>
