@@ -1,0 +1,88 @@
+<?php
+session_start();
+require_once('baglan.php');
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Css Files -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Header Section Start -->
+    <header id="header" class="bg-light">
+        <section id="menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="index.php">TURKUAZ EĞİTİM</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="index.php">Ana Sayfa</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
+                                            Dil Eğitimi
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <?php
+                                            $menu1 = $db->prepare('select * from egitimler where kategori="Dil Eğitimi" order by egitimAdi asc ');
+                                            $menu1->execute();
+
+                                            if ($menu1->rowCount()) {
+                                                foreach ($menu1 as $menu1Satir) {
+                                            ?>
+                                                    <a class="dropdown-item" href="egitimler.php?egitimID=<?php echo $menu1Satir['id']; ?>"><?php echo $menu1Satir['egitimAdi']; ?></a>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
+                                            Sınavlara Hazırlık Kursları
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <?php
+                                            $menu2 = $db->prepare('select * from egitimler where kategori="Sınavlara Hazırlık Kursları" order by egitimAdi asc ');
+                                            $menu2->execute();
+
+                                            if ($menu1->rowCount()) {
+                                                foreach ($menu2 as $menu2Satir) {
+                                            ?>
+                                                    <a class="dropdown-item" href="egitimler.php?egitimID=<?php echo $menu2Satir['id']; ?>"><?php echo $menu2Satir['egitimAdi']; ?></a>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item ml-5">
+                                        <a class="nav-link btn btn-warning" href="#">Bize Ulaşın</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <!-- Header Section End -->

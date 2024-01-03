@@ -10,6 +10,12 @@ td{vertical-align: middle !important;}
 
 .py-10{padding:100px 0px;}
 .bg-mavi{background-color: #4255a4;}
+.bg-lacivert{background-color: #072144;}
+.btn-lacivert{
+    background-color: #072144;
+    color:#fff;
+}
+.btn-lacivert:hover{color: #fff;}
 
 #footer{color:#fff;}
 #footer .bi{color:#fff;}

@@ -66,6 +66,10 @@ if (isset($_GET['updateID'])) {
                                 </script>
                             </div>
                             <div class="form-group text-left">
+                                <label>Tanıtım İçerik Videosu</label>
+                                <input type="url" name="video" placeholder="Youtube Linkini Yapıştırın" class="form-control">
+                            </div>
+                            <div class="form-group text-left">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <label>Eğitim Süresi (Saat)</label>
@@ -76,6 +80,7 @@ if (isset($_GET['updateID'])) {
                                         <select name="katilimci" class="form-control">
                                             <option value="">Seçiniz</option>
                                             <option value="Herkes">Herkes</option>
+                                            <option value="Beginner">Beginner</option>
                                         </select>
                                     </div>
                                     <div class="col-md-2">
@@ -116,8 +121,8 @@ if (isset($_POST['egitimEkle'])) {
     $gorsel = '../img/' . $_FILES['gorsel']['name'];
 
     if (move_uploaded_file($_FILES['gorsel']['tmp_name'], $gorsel)) {
-        $egitimEkle = $db->prepare('insert into egitimler(egitimAdi,aciklama,sure,katilimci,kontenjan,kategori,gorsel) values(?,?,?,?,?,?,?)');
-        $egitimEkle->execute(array($_POST['egitimAdi'], $_POST['aciklama'], $_POST['sure'], $_POST['katilimci'], $_POST['kontenjan'], $_POST['kategori'], $gorsel));
+        $egitimEkle = $db->prepare('insert into egitimler(egitimAdi,aciklama,sure,katilimci,kontenjan,kategori,gorsel,video) values(?,?,?,?,?,?,?,?)');
+        $egitimEkle->execute(array($_POST['egitimAdi'], $_POST['aciklama'], $_POST['sure'], $_POST['katilimci'], $_POST['kontenjan'], $_POST['kategori'], $gorsel, $_POST['video']));
 
         if ($egitimEkle->rowCount()) {
             echo '<script>alert("Eğitim Kayıt Edildi")</script><meta http-equiv="refresh" content="0; url=egitimler.php">';
@@ -206,6 +211,9 @@ if (isset($_POST['egitimEkle'])) {
                             });
                         </script>
                     </div>
+                    <div class="form-group">
+                        <input type="url" name="videoUP" value="<?php echo $egitimSecRow['video']; ?>" class="form-control">
+                    </div>
                     <div class="form-group text-left">
                         <div class="row">
                             <div class="col-md-2">
@@ -217,6 +225,7 @@ if (isset($_POST['egitimEkle'])) {
                                 <select name="katilimciUP" class="form-control">
                                     <option value="<?php echo $egitimSecRow['katilimci']; ?>"><?php echo $egitimSecRow['katilimci']; ?></option>
                                     <option value="Herkes">Herkes</option>
+                                    <option value="Beginner">Beginner</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -256,8 +265,8 @@ if (isset($_POST['egitimUpdate'])) {
     $gorsel = '../img/' . $_FILES['gorsel']['name'];
 
     if (move_uploaded_file($_FILES['gorsel']['tmp_name'], $gorsel)) {
-        $egitimGuncelle = $db->prepare('update egitimler set egitimAdi=?, aciklama=?, sure=?, katilimci=?, kontenjan=?, kategori=?, gorsel=? where id=?');
-        $egitimGuncelle->execute(array($_POST['egitimAdiUP'], $_POST['aciklamaUP'], $_POST['sureUP'], $_POST['katilimciUP'], $_POST['kontenjanUP'], $_POST['kategoriUP'], $gorsel, $_POST['id']));
+        $egitimGuncelle = $db->prepare('update egitimler set egitimAdi=?, aciklama=?, sure=?, katilimci=?, kontenjan=?, kategori=?, gorsel=?, video=? where id=?');
+        $egitimGuncelle->execute(array($_POST['egitimAdiUP'], $_POST['aciklamaUP'], $_POST['sureUP'], $_POST['katilimciUP'], $_POST['kontenjanUP'], $_POST['kategoriUP'], $gorsel, $_POST['videoUP'],$_POST['id']));
 
         if ($egitimGuncelle->rowCount()) {
             echo '<script>alert("Eğitim Güncellendi")</script><meta http-equiv="refresh" content="0; url=egitimler.php">';
