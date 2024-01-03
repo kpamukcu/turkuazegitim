@@ -59,7 +59,9 @@ session_start();
                         <li class="list-group-item"><a href="user.php">Kullanıcılar</a></li>
                         <li class="list-group-item"><a href="kategori.php">Kategoriler</a></li>
                         <li class="list-group-item"><a href="yazilar.php">Yazılar</a></li>
+                        <li class="list-group-item"><a href="sayfalar.php">Sayfalar</a></li>
                         <li class="list-group-item"><a href="egitimler.php">Eğitimler</a></li>
+                        <li class="list-group-item"><a href="ayarlar.php">Ayarlar</a></li>
                     </ul>
                 </div>
                 <div class="col-md-10 py-4">
