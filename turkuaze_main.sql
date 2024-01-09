@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 03 Oca 2024, 13:14:54
+-- Üretim Zamanı: 09 Oca 2024, 11:58:04
 -- Sunucu sürümü: 8.0.31
 -- PHP Sürümü: 8.0.26
 
@@ -77,6 +77,32 @@ CREATE TABLE IF NOT EXISTS `kategoriler` (
 
 INSERT INTO `kategoriler` (`id`, `katadi`, `katturu`, `ustkategori`, `aciklama`, `gorsel`) VALUES
 (1, 'İngilizce', 'Alt Kategori', 'Kurslar', 'İngilizce Kursları', '../img/turkuaz-egitim-logo-116x116.png');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `sayfalar`
+--
+
+DROP TABLE IF EXISTS `sayfalar`;
+CREATE TABLE IF NOT EXISTS `sayfalar` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `baslik` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `aciklama` varchar(5000) COLLATE utf8mb4_general_ci NOT NULL,
+  `video` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `gorsel` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `alt` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `ustMenu` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `sayfalar`
+--
+
+INSERT INTO `sayfalar` (`id`, `baslik`, `aciklama`, `video`, `meta`, `gorsel`, `alt`, `ustMenu`) VALUES
+(1, 'Niçin Turkuaz?', '<p><strong>HİKAYEMİZ</strong></p>\r\n\r\n<p>Aslında siz sevgili &ouml;ğrencilerimiz ve biz &ouml;ğretmenlerinizin hi&ccedil; bitmeyen ve de bitmeyecek ortak hikayesi...</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>BİZ KİMİZ? </strong></p>\r\n\r\n<p>Turkuaz Dil Eğitim Ailesi olarak, eğitime g&ouml;re &ouml;ğrenci değil &ndash; &ouml;ğrenciye g&ouml;re eğitim ilkesi d&acirc;hilinde, bireysel farklılıklara duyarlı, &ouml;ğrenci merkezli, hızla değişen d&uuml;nyanın taleplerine uygun hale getirilmiş, ezberletmektense edindirmeyi ama&ccedil;layan eğitim anlayışımız ile eğitim alanında &ccedil;eyrek asrı aşkın s&uuml;redir &ccedil;alışmalarımızı s&uuml;rd&uuml;rmekteyiz. Ayrıca akademik olarak uzaktan eğitim &uuml;zerine &ccedil;alışmalarını tamamlamış olan kurucularımız nezdinde hazırlanmış olan eğitim programlarımız ile &ouml;ğrencilerimize d&uuml;nyanın neresinde oldukları &ouml;nem arz etmeksizin eğitimlerimizi verebilmekteyiz.</p>\r\n\r\n<p><strong>AMACIMIZ</strong></p>\r\n\r\n<p>Bireysel farklılıkları temel alan bir sistem i&ccedil;erisinde &ccedil;ağdaş yaşamın gerektirdiği donanımlara sahip, Atat&uuml;rk ilke ve inkılaplarına bağlı, ulusal k&uuml;lt&uuml;r&uuml;n&uuml; &ouml;z&uuml;msemiş aynı zamanda k&uuml;resel bakış a&ccedil;ısına sahip, a&ccedil;ık fikirli, &uuml;lk&uuml;lerine ve ilkelerine bağlı, &uuml;retken, toplumsal sorumluluk bilinci gelişmiş, mutlu ve &ouml;zg&uuml;r bireyler yetiştirmektir.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h4 style=\"text-align:center\">&ldquo;Hi&ccedil;bir başarı gelişig&uuml;zel değildir. Her başarının ardında emek, sabır, &ouml;d&uuml;n ve sevgi yatar. Her nerede, her hangi şartlar altında &ccedil;alışıyor olursanız olun, yaptığınız işi sevin ve de ulusal değerlerimizden, kimliğimizden ve Atat&uuml;rk&rsquo;&uuml;n ışığından asla &ouml;d&uuml;n vermeyin.&rdquo;</h4>\r\n\r\n<p style=\"text-align:center\"><strong>&Ouml;zg&uuml;r AVŞAR, KURUCU</strong></p>\r\n', '', 'Aslında siz sevgili öğrencilerimiz ve biz öğretmenlerinizin hiç bitmeyen ve de bitmeyecek ortak hikayesi...', '../img/turkuaz-egitim-hakkimizda-1920x540.webp', 'Turkuaz Eğitim Hakkımızda', 'Hakkımızda');
 
 -- --------------------------------------------------------
 

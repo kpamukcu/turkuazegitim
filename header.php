@@ -123,16 +123,25 @@ require_once('baglan.php');
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="sample.php?sayfaID=XXXXX">Turkuaz Dil Eğitim Derneği</a>
+                                        <a class="nav-link" href="sample.php?pageID=XXXXX">Turkuaz Dil Eğitim Derneği</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
                                             Hakkımızda
                                         </a>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="">Sub Menü 1</a>
-                                            <a class="dropdown-item" href="">Sub Menü 2</a>
-                                            <a class="dropdown-item" href="">Sub Menü 3</a>
+                                            <?php
+                                            $hakkimizdaMenu = $db->prepare('select * from sayfalar where ustMenu="Hakkımızda" order by baslik asc');
+                                            $hakkimizdaMenu->execute();
+
+                                            if ($hakkimizdaMenu->rowCount()) {
+                                                foreach ($hakkimizdaMenu as $hakkimizdaMenuSatir) {
+                                            ?>
+                                                    <a class="dropdown-item" href="sample.php?pageID=<?php echo $hakkimizdaMenuSatir['id']; ?>"><?php echo $hakkimizdaMenuSatir['baslik']; ?></a>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </div>
                                     </li>
                                     <!-- <li class="nav-item ml-5">
