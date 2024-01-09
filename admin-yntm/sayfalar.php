@@ -157,7 +157,7 @@ if (isset($_POST['sayfaekle'])) {
                         <tr>
                             <td class="w-25"><img src="<?php echo $pageListSatir['gorsel']; ?>" class="w-75"></td>
                             <td><?php echo $pageListSatir['baslik']; ?></td>
-                            <td><?php echo substr($pageListSatir['aciklama'], 0, 100); ?></td>
+                            <td><?php echo substr($pageListSatir['aciklama'], 0, 180); ?></td>
                             <td class="text-center"><?php echo $pageListSatir['ustMenu']; ?></td>
                             <td class="text-center"><a href="sayfalar.php?updateID=<?php echo $pageListSatir['id']; ?>" class="btn btn-warning">Düzenle</a></td>
                             <td class="text-center"><a href="sayfalar.php?deleteID=<?php echo $pageListSatir['id']; ?>" class="btn btn-danger">Sil</a></td>
