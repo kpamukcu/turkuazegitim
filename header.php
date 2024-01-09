@@ -112,11 +112,18 @@ require_once('baglan.php');
                                             ?>
                                         </div>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="egitimler.php?egitimID=XXXXX">Oxford Üniversitesi Sınav Merkezi</a>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
+                                            Sınav Merkezleri
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="">Sub Menü 1</a>
+                                            <a class="dropdown-item" href="">Sub Menü 2</a>
+                                            <a class="dropdown-item" href="">Sub Menü 3</a>
+                                        </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="egitimler.php?egitimID=XXXXX">Turkuaz Dil Eğitim Derneği</a>
+                                        <a class="nav-link" href="sample.php?sayfaID=XXXXX">Turkuaz Dil Eğitim Derneği</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
