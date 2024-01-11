@@ -19,6 +19,8 @@ td{vertical-align: middle !important;}
 
 #footer{color:#fff;}
 #footer .bi{color:#fff;}
+.bi{font-size:24px;}
+aside .bi{color: #072144;}
 
 #panel li{
     background-color: transparent !important;
@@ -27,3 +29,9 @@ td{vertical-align: middle !important;}
 }
 
 #panel li a{color: #fff;}
+
+#blogBanner{
+    padding:120px 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

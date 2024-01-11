@@ -117,9 +117,19 @@ require_once('baglan.php');
                                             Sınav Merkezleri
                                         </a>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="">Sub Menü 1</a>
-                                            <a class="dropdown-item" href="">Sub Menü 2</a>
-                                            <a class="dropdown-item" href="">Sub Menü 3</a>
+                                            <?php
+                                            $sinavMerkezi = $db->prepare('select * from sayfalar where ustMenu = "Sınav Merkezi" order by baslik asc');
+                                            $sinavMerkezi->execute();
+
+                                            if ($sinavMerkezi->rowCount()) {
+                                                foreach ($sinavMerkezi as $sinavMerkeziSatir) {
+                                            ?>
+                                                    <a class="dropdown-item" href="samplepage.php?id=<?php echo $sinavMerkeziSatir['id']; ?>"><?php echo $sinavMerkeziSatir['baslik']; ?></a>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+
                                         </div>
                                     </li>
                                     <li class="nav-item">
@@ -142,6 +152,7 @@ require_once('baglan.php');
                                                 }
                                             }
                                             ?>
+                                            <a class="dropdown-item" href="blog.php">Ağ Günlüğü (Blog)</a>
                                         </div>
                                     </li>
                                     <!-- <li class="nav-item ml-5">
