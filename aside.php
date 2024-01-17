@@ -12,16 +12,31 @@
             <h5>Güncel Yazılar</h5>
 
             <?php
-            $guncelYazilar = $db->prepare('select * from yazilar where id not in (?) order by id desc');
-            $guncelYazilar->execute(array($id));
 
-            if ($guncelYazilar->rowCount()) {
-                foreach ($guncelYazilar as $guncelYazilarSatir) {
+            if (isset($_GET['postID'])) {
+                $guncelYazilar = $db->prepare('select * from yazilar where id not in (?) order by id desc');
+                $guncelYazilar->execute(array($_GET['postID']));
+
+                if ($guncelYazilar->rowCount()) {
+                    foreach ($guncelYazilar as $guncelYazilarSatir) {
             ?>
-                    <a href="makale.php?postID=<?php echo $guncelYazilarSatir['id']; ?>"><small><?php echo $guncelYazilarSatir['baslik']; ?></small></a>
+                        <a href="makale.php?postID=<?php echo $guncelYazilarSatir['id']; ?>" class="text-dark"><small style="text-transform: capitalize;">- <?php echo $guncelYazilarSatir['baslik']; ?></small></a>
+                    <?php
+                    }
+                }
+            } else {
+                $guncelYazilar = $db->prepare('select * from yazilar order by id desc');
+                $guncelYazilar->execute();
+
+                if ($guncelYazilar->rowCount()) {
+                    foreach ($guncelYazilar as $guncelYazilarSatir) {
+                    ?>
+                            <a href="makale.php?postID=<?php echo $guncelYazilarSatir['id']; ?>" class="text-dark"><small style="text-transform: capitalize;">- <?php echo $guncelYazilarSatir['baslik']; ?></small></a> <br>
             <?php
+                    }
                 }
             }
+
             ?>
 
         </div>
