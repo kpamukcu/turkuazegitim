@@ -62,6 +62,7 @@ session_start();
                         <li class="list-group-item"><a href="sayfalar.php">Sayfalar</a></li>
                         <li class="list-group-item"><a href="egitimler.php">Eğitimler</a></li>
                         <li class="list-group-item"><a href="ekip.php">Ekibimiz</a></li>
+                        <li class="list-group-item"><a href="bilgi-talepleri.php">Bilgi Talepleri</a></li>
                         <li class="list-group-item"><a href="sss.php">S.S.S</a></li>
                         <li class="list-group-item"><a href="ayarlar.php">Ayarlar</a></li>
                     </ul>

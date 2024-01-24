@@ -30,8 +30,14 @@ aside .bi{color: #072144;}
 
 #panel li a{color: #fff;}
 
-#blogBanner{
+#blogBanner, #blog{
     padding:120px 0px;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center center;
+}
+
+#blog{
+    background-image: url(../img/turkuaz-egitim-blog-1648x540.webp);
+    color:#fff;
 }

@@ -1,10 +1,19 @@
 <?php require_once('header.php'); ?>
 
 <!-- Banner Section Start -->
+<section id="blog">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4">Ağ Günlüğü (Blog)</h1>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Banner Section End -->
 
 <!-- Content Section Start -->
-<section id="blogList">
+<section id="blogList" class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-9">
