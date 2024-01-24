@@ -35,7 +35,7 @@
                             <td><?php echo $talepListSatir['tarih']; ?></td>
                             <td><?php echo $talepListSatir['durum']; ?></td>
                             <td><a href="bilgi-talepleri.php?updateID=<?php echo $talepListSatir['id']; ?>" class="btn btn-warning">Düzenle</a></td>
-                            <td><a href="bilgi-talepleri.php?deleteID=<?php echo $talepListSatir['id']; ?>" class="btn btn-danger">Sİl</a></td>
+                            <td><a href="bilgi-talepleri.php?deleteID=<?php echo $talepListSatir['id']; ?>" class="btn btn-danger">Sil</a></td>
                         </tr>
                 <?php
                     }
