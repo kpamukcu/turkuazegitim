@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 11 Oca 2024, 11:57:35
+-- Üretim Zamanı: 24 Oca 2024, 10:02:45
 -- Sunucu sürümü: 8.0.31
 -- PHP Sürümü: 8.0.26
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Veritabanı: `turkuaze_main`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `detayli_bilgi`
+--
+
+DROP TABLE IF EXISTS `detayli_bilgi`;
+CREATE TABLE IF NOT EXISTS `detayli_bilgi` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `adi` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `tel` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `tarih` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `durum` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `aciklama` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `detayli_bilgi`
+--
+
+INSERT INTO `detayli_bilgi` (`id`, `adi`, `tel`, `email`, `tarih`, `durum`, `aciklama`) VALUES
+(1, 'Kaan Pamukcu', '05555555555', 'kaan@deneme.com', '', '', ''),
+(2, 'Kaan Dene', '05555555555', 'kaanpamukcu@gmail.com', '', '', ''),
+(3, 'Deneme', '05555555555', 'kaanpamukcu@gmail.com', '', '', ''),
+(4, 'Deneme 2', '05555555555', 'kaanpamukcu@gmail.com', '24.01.2024', 'Aranmadı', '');
 
 -- --------------------------------------------------------
 
