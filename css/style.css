@@ -17,6 +17,9 @@ td{vertical-align: middle !important;}
 }
 .btn-lacivert:hover{color: #fff;}
 
+#menu .nav-link{color: #f5f5f5;}
+#menu a{font-size: 14px;}
+
 #footer{color:#fff;}
 #footer .bi{color:#fff;}
 .bi{font-size:24px;}

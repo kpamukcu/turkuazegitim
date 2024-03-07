@@ -21,8 +21,49 @@ require_once('baglan.php');
 <body>
 
     <!-- Header Section Start -->
-    <header id="header" class="bg-light">
-        <section id="menu">
+    <header id="header">
+        <section id="topBar" class="py-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="index.php">
+                            <img src="img/turkuaz-egitim-logo-116x116.png" alt="Turkuaz Eğitim Logo" style="width: 50px;">
+                        </a>
+                        Turkuaz Eğitim
+                    </div>
+                    <div class="col-md-6 text-right my-auto">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" style="font-size: 12px;">
+                            Bilgi Talep Edin
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Form Gelecek
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Understood</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="iletisim.php" class="btn btn-info" style="font-size:12px;">İletişim</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="menu" class="btn-lacivert">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
