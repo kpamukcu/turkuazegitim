@@ -6,8 +6,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ullam modi culpa, sunt vel excepturi! Quod culpa porro neque quis molestias numquam sunt quidem nam veritatis alias blanditiis commodi, delectus dolorem, accusamus saepe, quia obcaecati recusandae. Nemo obcaecati maxime, saepe soluta, porro ipsam omnis necessitatibus deleniti quia sapiente enim perferendis corporis neque sit pariatur tempore nobis quis suscipit, beatae quisquam officiis! Dolores voluptate aliquid nesciunt corporis.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ullam modi culpa, sunt vel excepturi! Quod culpa porro neque quis molestias numquam sunt quidem nam veritatis alias blanditiis commodi, delectus dolorem, accusamus saepe, quia obcaecati recusandae. Nemo obcaecati maxime, saepe soluta, porro ipsam omnis necessitatibus deleniti quia sapiente enim perferendis corporis neque sit pariatur tempore nobis quis suscipit, beatae quisquam officiis! Dolores voluptate aliquid nesciunt corporis.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ullam modi culpa, sunt vel excepturi! Quod culpa porro neque quis molestias numquam sunt quidem nam veritatis alias blanditiis commodi, delectus dolorem, accusamus saepe, quia obcaecati recusandae. Nemo obcaecati maxime, saepe soluta, porro ipsam omnis necessitatibus deleniti quia sapiente enim perferendis corporis neque sit pariatur.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ullam modi culpa, sunt vel excepturi! Quod culpa porro neque quis molestias numquam sunt quidem nam veritatis alias blanditiis commodi, delectus dolorem, accusamus saepe, quia obcaecati recusandae. Nemo obcaecati maxime, saepe soluta, porro ipsam omnis necessitatibus deleniti quia sapiente enim perferendis corporis neque sit pariatur.</p>
             </div>
         </div>
         <div class="row">
@@ -63,5 +63,7 @@
     </div>
 </section>
 <!-- About Us Section End -->
+
+<?php require_once('bize-ulasin.php'); ?>
 
 <?php require_once('footer.php'); ?>
