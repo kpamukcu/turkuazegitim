@@ -53,3 +53,7 @@ aside .bi{color: #072144;}
     font-size:52px;
     color: #072144;
 }
+
+#bilgiAl .card{
+    border-radius:15px;
+}

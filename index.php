@@ -64,6 +64,23 @@
 </section>
 <!-- About Us Section End -->
 
-<?php require_once('bize-ulasin.php'); ?>
+<!-- Bilgi Al Secion Start -->
+<?php require_once('bilgi-al.php'); ?>
+<!-- Bilgi Al Secion End -->
+
+
+<!-- Sizden Gelenler Section Start -->
+<section id="sizdenGelenler">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Sizden Gelenler Section End -->
+
+
 
 <?php require_once('footer.php'); ?>
