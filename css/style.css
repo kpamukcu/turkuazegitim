@@ -57,3 +57,14 @@ aside .bi{color: #072144;}
 #bilgiAl .card{
     border-radius:15px;
 }
+
+#yurtDisiProgramlar img, #dilEgitimleri img, #agGunlugu img{
+    min-height: 255px;
+    object-fit: cover;
+    object-position: -90px 0px;
+}
+
+.cardFooter{
+    font-size: 14px; 
+    color:#fff;
+}
