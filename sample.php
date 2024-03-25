@@ -11,7 +11,7 @@ if($_GET['pageID']){
 ?>
 
 <!-- Sample Banner Start -->
-<section id="sampleBanner" style="background-image: url(<?php echo substr($sayfaInfoSatir['gorsel'],3); ?>);">
+<section id="sampleBanner" style="background-image: url(<?php echo substr($sayfaInfoSatir['gorsel'],3); ?>);" class="mt-1">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center text-white">

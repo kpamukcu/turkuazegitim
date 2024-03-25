@@ -151,6 +151,7 @@ require_once('baglan.php');
                                                 }
                                             }
                                             ?>
+                                            <a class="dropdown-item" href="https://www.hizliokuma.turkuazegitim.net" target="_blank">Hızlı Okuma Programı</a>
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">

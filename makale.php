@@ -13,7 +13,7 @@ echo '<meta name="description" content="' . $postCekSatir['meta'] . '">';
 ?>
 
 <!-- Blog Banner Section Start -->
-<section id="blogBanner" style="background-image: url(<?php echo substr($postCekSatir['gorsel'], 3); ?>);">
+<section id="blogBanner" style="background-image: url(<?php echo substr($postCekSatir['gorsel'], 3); ?>);" class="mt-1">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center">

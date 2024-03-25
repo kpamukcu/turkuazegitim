@@ -10,7 +10,7 @@ if ($_GET['egitimID']) {
 ?>
 
 <!-- Banner Section Start -->
-<section id="egitimlerBanner" style="background-image: url(<?php echo  substr($egitimInfoSatir['gorsel'], 3); ?>);">
+<section id="egitimlerBanner" style="background-image: url(<?php echo  substr($egitimInfoSatir['gorsel'], 3); ?>);" class="mt-1">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center text-white">

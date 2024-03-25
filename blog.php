@@ -1,7 +1,7 @@
 <?php require_once('header.php'); ?>
 
 <!-- Banner Section Start -->
-<section id="blog">
+<section id="blog" class="mt-1">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center">
