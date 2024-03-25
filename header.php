@@ -165,7 +165,7 @@ require_once('baglan.php');
                                             if ($sinavMerkezi->rowCount()) {
                                                 foreach ($sinavMerkezi as $sinavMerkeziSatir) {
                                             ?>
-                                                    <a class="dropdown-item" href="sample.php?id=<?php echo $sinavMerkeziSatir['id']; ?>"><?php echo $sinavMerkeziSatir['baslik']; ?></a>
+                                                    <a class="dropdown-item" href="sample.php?pageID=<?php echo $sinavMerkeziSatir['id']; ?>"><?php echo $sinavMerkeziSatir['baslik']; ?></a>
                                             <?php
                                                 }
                                             }

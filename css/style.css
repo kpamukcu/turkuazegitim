@@ -33,7 +33,7 @@ aside .bi{color: #072144;}
 
 #panel li a{color: #fff;}
 
-#blogBanner, #blog{
+#blogBanner, #blog, #egitimlerBanner, #sampleBanner{
     padding:120px 0px;
     background-repeat: no-repeat;
     background-size: cover;
