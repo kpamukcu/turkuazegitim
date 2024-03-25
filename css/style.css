@@ -33,7 +33,7 @@ aside .bi{color: #072144;}
 
 #panel li a{color: #fff;}
 
-#blogBanner, #blog, #egitimlerBanner, #sampleBanner{
+#blogBanner, #blog, #egitimlerBanner, #sampleBanner, #sssBanner{
     padding:120px 0px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -68,3 +68,5 @@ aside .bi{color: #072144;}
     font-size: 14px; 
     color:#fff;
 }
+
+#sssContent h2{font-size:20px;}

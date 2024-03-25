@@ -175,7 +175,7 @@ require_once('baglan.php');
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="sample.php?pageID=XXXXX">Turkuaz Dil Eğitim Derneği</a>
+                                        <a class="nav-link" href="sample.php?pageID=5">Turkuaz Dil Eğitim Derneği</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -195,6 +195,7 @@ require_once('baglan.php');
                                             }
                                             ?>
                                             <a class="dropdown-item" href="blog.php">Ağ Günlüğü (Blog)</a>
+                                            <a class="dropdown-item" href="sss.php">Sık Sorulan Sorular</a>
                                         </div>
                                     </li>
                                     <!-- <li class="nav-item ml-5">
